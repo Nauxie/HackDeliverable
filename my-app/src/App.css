@@ -31,6 +31,7 @@
   display: inline-block;
 }
 .rightBlock {
+  display: inline-block;
 }
 
 @media (orientation: portrait) {

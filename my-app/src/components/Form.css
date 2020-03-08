@@ -14,14 +14,21 @@
 
 .group label {
   position: relative;
-  right: 27%;
   text-align: left;
   font-weight: 600;
 }
 
-.group input {
+.regular-input {
   width: 200px;
   border-color: gray;
+  border-radius: 5px;
+  border-style: solid;
+  height: 20px;
+  margin-top: 5px;
+}
+.error-input {
+  width: 200px;
+  border-color: red;
   border-radius: 5px;
   border-style: solid;
   height: 20px;
@@ -34,12 +41,11 @@
 
 .group2 label {
   position: relative;
-  right: 23%;
   text-align: left;
   font-weight: 600;
 }
 
-.group2 textarea {
+.regular-area {
   width: 200px;
   border-color: gray;
   border-radius: 5px;
@@ -51,6 +57,24 @@
   max-height: 60px;
   min-width: 100px;
   min-height: 30px;
+}
+.error-area {
+  width: 200px;
+  border-color: red;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  height: 60px;
+  margin-top: 5px;
+  max-width: 200px;
+  max-height: 60px;
+  min-width: 100px;
+  min-height: 30px;
+}
+
+.error-text {
+  font-size: 10px;
+  color: red;
 }
 .submitbutton {
   margin-top: 15px;

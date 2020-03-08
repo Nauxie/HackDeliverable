@@ -1,30 +1,80 @@
 import React from 'react';
 import './Form.css';
+import useFormValidation from './useFormValidation';
+import validateAuth from './validateAuth';
 
+const INITIAL_STATE = {
+  name: '',
+  email: '',
+  funFact: ''
+};
 function Form() {
+  const {
+    handleChange,
+    values,
+    handleSubmit,
+    handleBlur,
+    errors,
+    isSubmitting
+  } = useFormValidation(INITIAL_STATE, validateAuth);
   return (
     <div className='formback'>
       <h3>Hack UCI Application</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='group'>
-          <label>Name</label>
+          <label>
+            <span>Name</span>
+            {errors.name && <span className='error-text'> Invalid</span>}
+          </label>
           <div>
-            <input placeholder='Name'></input>
+            <input
+              className={errors.name ? 'error-input' : 'regular-input'}
+              placeholder='Name'
+              name='name'
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            ></input>
           </div>
         </div>
         <div className='group'>
-          <label>Email</label>
+          <label>
+            <span>Email</span>
+            {errors.email && <span className='error-text'> Invalid</span>}
+          </label>
           <div>
-            <input placeholder='Email'></input>
+            <input
+              className={errors.email ? 'error-input' : 'regular-input'}
+              placeholder='Email'
+              name='email'
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            ></input>
           </div>
         </div>
         <div className='group2'>
-          <label>Fun Fact</label>
+          <label>
+            <span>Fun Fact</span>
+            {errors.funFact && <span className='error-text'> Invalid</span>}
+          </label>
           <div>
-            <textarea placeholder='Fun Fact...'></textarea>
+            <textarea
+              className={errors.funFact ? 'error-area' : 'regular-area'}
+              placeholder='Fun Fact...'
+              name='funFact'
+              value={values.funFact}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            ></textarea>
           </div>
         </div>
-        <input className='submitbutton' type='submit' value='Submit' />
+        <input
+          disabled={isSubmitting}
+          className='submitbutton'
+          type='submit'
+          value='Submit'
+        />
       </form>
     </div>
   );
