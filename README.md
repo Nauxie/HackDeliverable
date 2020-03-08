@@ -11,3 +11,4 @@ To begin, try running the following commands:
 ### `npm start`
 
 ![Image](./my-app/demo.png)
+![Image](./my-app/demo2.png)
