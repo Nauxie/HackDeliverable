@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 function useFormValidation(initialState, validate) {
   const [values, setValues] = React.useState(initialState);
@@ -6,6 +7,20 @@ function useFormValidation(initialState, validate) {
   const [isSubmitting, setSubmitting] = React.useState(false);
 
   React.useEffect(() => {
+    async function fetchData() {
+      await axios
+        .get('https://hack-uci-test-endpoint.herokuapp.com/test', {
+          params: {
+            name: values.name,
+            email: values.email,
+            funfact: values.funFact
+          }
+        })
+        .then(function(response) {
+          console.log(response);
+          alert('Successfully submitted!');
+        });
+    }
     if (isSubmitting) {
       const noErrors = Object.keys(errors).length === 0;
       if (noErrors) {
@@ -15,12 +30,14 @@ function useFormValidation(initialState, validate) {
           values.email,
           values.funFact
         );
+        fetchData();
         setSubmitting(false);
+        setValues(initialState);
       } else {
         setSubmitting(false);
       }
     }
-  }, [errors, isSubmitting, values]);
+  }, [errors, isSubmitting, values, initialState]);
   function handleChange(event) {
     setValues({
       ...values,
@@ -33,6 +50,7 @@ function useFormValidation(initialState, validate) {
     setErrors(validationErrors);
   }
   function handleSubmit(event) {
+    event.preventDefault();
     const validationErrors = validate(values);
     setErrors(validationErrors);
     setSubmitting(true);
