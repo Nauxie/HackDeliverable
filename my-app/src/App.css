@@ -28,10 +28,9 @@
   left: 0;
 }
 .leftBlock {
-  border: 1px solid green;
+  display: inline-block;
 }
 .rightBlock {
-  border: 1px solid green;
 }
 
 @media (orientation: portrait) {
